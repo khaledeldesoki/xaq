@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
-const TaskList = () => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const res = await axios.get('/api/tasks');
-      setTasks(res.data);
-    };
-    fetchTasks();
-  }, []);
+const TaskList = ({ tasks, onTaskComplete }) => {
+  const handleTaskComplete = (taskId) => {
+    onTaskComplete(taskId);
+  };
 
   return (
     <div>
       <h2>Task List</h2>
-      <Link to="/new-task">Add New Task</Link>
       <ul>
-        {tasks.map(task => (
-          <li key={task._id}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-            <p>{task.completed ? 'Completed' : 'Incomplete'}</p>
+        {tasks.map((task) => (
+          <li key={task.id}>
+            {task.name}
+            <button onClick={() => handleTaskComplete(task.id)}>Complete</button>
           </li>
         ))}
       </ul>

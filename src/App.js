@@ -1,41 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Web3 from 'web3';
+import React, { useState } from 'react';
 import TaskList from './components/TaskList';
-import TaskForm from './components/TaskForm';
-import SalaryStream from './contracts/SalaryStream.json';
+import PaymentStatus from './components/PaymentStatus';
+import { tasks as initialTasks, completeTask } from './services/taskService';
+import { checkPaymentEligibility, releasePayment } from './services/paymentService';
 
 const App = () => {
-  const [account, setAccount] = useState('');
-  const [contract, setContract] = useState(null);
+  const [tasks, setTasks] = useState(initialTasks);
+  const [isPaid, setIsPaid] = useState(false);
 
-  useEffect(() => {
-    const initWeb3 = async () => {
-      if (window.ethereum) {
-        const web3 = new Web3(window.ethereum);
-        await window.ethereum.enable();
-        const accounts = await web3.eth.getAccounts();
-        setAccount(accounts[0]);
+  const handleTaskComplete = (taskId) => {
+    const updatedTasks = completeTask(taskId);
+    setTasks([...updatedTasks]);
 
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork = SalaryStream.networks[networkId];
-        const contractInstance = new web3.eth.Contract(
-          SalaryStream.abi,
-          deployedNetwork && deployedNetwork.address
-        );
-        setContract(contractInstance);
-      }
-    };
-    initWeb3();
-  }, []);
+    const isEligible = checkPaymentEligibility(updatedTasks);
+    releasePayment(isEligible);
+    setIsPaid(isEligible);
+  };
 
   return (
     <div>
-      <h1>Stream Payment Salary App</h1>
-      <Switch>
-        <Route path="/" exact component={TaskList} />
-        <Route path="/new-task" component={TaskForm} />
-      </Switch>
+      <h1>Stream Payment Salary</h1>
+      <TaskList tasks={tasks} onTaskComplete={handleTaskComplete} />
+      <PaymentStatus isPaid={isPaid} />
     </div>
   );
 };

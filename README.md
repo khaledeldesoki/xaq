@@ -1,83 +1,70 @@
-# Stream Payment Salary App
+# Stream Payment Salary
 
-## Overview
-This project is a stream payment salary app using React and DeFi concepts. It links with a task platform to ensure employees get paid only when tasks are completed.
+This project implements a salary payment streaming system using React and Solana. The system ensures employees only get paid if they complete their tasks. It is designed to be tested locally without using real money.
 
 ## Features
-- Task management platform
-- Salary streaming using DeFi protocols
-- Integration with blockchain for secure payments
 
-## Setup
+- Stream payment using Superfluid or Sablier
+- Task management system
+- Conditional payment based on task completion
+- User-friendly interface with React components
 
-### Prerequisites
+## Prerequisites
+
 - Node.js
+- Solana CLI
 - GitHub Codespaces
-- Ganache CLI (for local blockchain)
-- Truffle (for smart contract testing)
-- MetaMask (for local wallet)
 
-### Installation
+## Getting Started
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/stream-payment-app.git
-   cd stream-payment-app
-   ```
+### Clone the Repository
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/yourusername/stream-payment-salary.git
+cd stream-payment-salary
+```
 
-3. Start the development server:
-   ```bash
-   npm start
-   ```
+### Install Dependencies
 
-### Running the Backend
+```bash
+npm install
+```
 
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+### Run the Project
 
-2. Install backend dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm start
+```
 
-3. Start the backend server:
-   ```bash
-   npm start
-   ```
+The project will run locally at `http://localhost:3000`.
 
-### Running the Local Blockchain
+### Using GitHub Codespaces
 
-1. Start Ganache CLI:
-   ```bash
-   ganache-cli
-   ```
+1. Open the repository on GitHub.
+2. Click on the `Code` button and select `Open with Codespaces`.
+3. Create a new Codespace and wait for it to initialize.
+4. The project will be ready to run in the Codespace environment.
 
-2. Compile and deploy contracts:
-   ```bash
-   truffle compile
-   truffle migrate
-   ```
+## Project Structure
 
-3. Configure MetaMask to connect to the local blockchain (http://127.0.0.1:7545).
-
-### Testing Smart Contracts
-
-1. Run tests:
-   ```bash
-   truffle test
-   ```
-
-## Deployment
-
-- Frontend: Use GitHub Pages or Vercel
-- Backend: Deploy on Heroku or any other cloud service
+```plaintext
+stream-payment-salary/
+├── public/
+│   ├── index.html
+├── src/
+│   ├── components/
+│   │   ├── TaskList.js
+│   │   ├── PaymentStatus.js
+│   ├── services/
+│   │   ├── paymentService.js
+│   │   ├── taskService.js
+│   ├── App.js
+│   ├── index.js
+├── .gitignore
+├── package.json
+├── README.md
+```
 
 ## License
+
 This project is licensed under the MIT License.
