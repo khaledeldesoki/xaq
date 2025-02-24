@@ -1,70 +1,65 @@
 # Stream Payment Salary
 
-This project implements a salary payment streaming system using React and Solana. The system ensures employees only get paid if they complete their tasks. It is designed to be tested locally without using real money.
-
-## Features
-
-- Stream payment using Superfluid or Sablier
-- Task management system
-- Conditional payment based on task completion
-- User-friendly interface with React components
-
-## Prerequisites
-
-- Node.js
-- Solana CLI
-- GitHub Codespaces
-
-## Getting Started
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/stream-payment-salary.git
-cd stream-payment-salary
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Run the Project
-
-```bash
-npm start
-```
-
-The project will run locally at `http://localhost:3000`.
-
-### Using GitHub Codespaces
-
-1. Open the repository on GitHub.
-2. Click on the `Code` button and select `Open with Codespaces`.
-3. Create a new Codespace and wait for it to initialize.
-4. The project will be ready to run in the Codespace environment.
+A simple project for streaming salary payments using React and Solana.
 
 ## Project Structure
 
-```plaintext
+```
 stream-payment-salary/
-├── public/
-│   ├── index.html
-├── src/
-│   ├── components/
-│   │   ├── TaskList.js
-│   │   ├── PaymentStatus.js
-│   ├── services/
-│   │   ├── paymentService.js
-│   │   ├── taskService.js
-│   ├── App.js
-│   ├── index.js
+├── backend/
+│   ├── migrations/
+│   ├── programs/
+│   ├── src/
+│   ├── target/
+│   ├── Cargo.toml
+│   ├── Cargo.lock
+│   └── Solana.toml
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── PaymentForm.js
+│   │   ├── utils/
+│   │   │   └── solana.js
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   ├── index.css
+│   │   └── App.css
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   └── .gitignore
 ├── .gitignore
-├── package.json
-├── README.md
+└── README.md
 ```
 
-## License
+## Instructions
+
+### Backend
+
+1. Navigate to the `backend` directory and build the Solana program:
+   ```sh
+   cd backend
+   cargo build-bpf
+   ```
+
+### Frontend
+
+1. Navigate to the `frontend` directory and install the dependencies:
+   ```sh
+   cd frontend
+   npm install
+   ```
+
+2. Start the React application:
+   ```sh
+   npm start
+   ```
+
+### Configuration
+
+Replace the example secret key in `frontend/src/utils/solana.js` with your actual Solana secret key.
+
+### License
 
 This project is licensed under the MIT License.

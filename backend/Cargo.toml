@@ -1,0 +1,7 @@
+[package]
+name = "stream_payment_salary"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+solana-program = "1.7.11"
